@@ -31,5 +31,3 @@ if __name__ == '__main__':
     print(myStack.get_stack())
     print(myStack.is_empty())
     
-    print(myStack.peek())
-    
