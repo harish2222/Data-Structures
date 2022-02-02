@@ -1,3 +1,6 @@
+from re import A
+
+
 class Node:
 
     def __init__(self, data):
@@ -37,7 +40,7 @@ class LinkedList:
 
         while cur_node:
 
-            print(cur_node.data, '->', end=" ")
+            print(cur_node.data, "->", end=" ")
 
             cur_node = cur_node.next
 
@@ -140,19 +143,105 @@ class LinkedList:
 
         return 1 + self.len_recursive(node.next)
 
+    def swap_nodes(self, key_1, key_2):
 
-if __name__ == '__main__':
+        if key_1 == key_2:
+            return
+
+        prev_1 = None
+        curr_1 = self.head
+        while curr_1 and curr_1.data != key_1:
+            prev_1 = curr_1
+            curr_1 = curr_1.next
+
+        prev_2 = None
+        curr_2 = self.head
+        while curr_2 and curr_2.data != key_2:
+            prev_2 = curr_2
+            curr_2 = curr_2.next
+
+        if not curr_1 or not curr_2:
+            return
+        if prev_1:
+            prev_1.next = curr_2
+        else:
+            self.head = curr_2
+
+        if prev_2:
+            prev_2.next = curr_1
+        else:
+            self.head = curr_1
+
+        curr_1.next, curr_2.next = curr_2.next, curr_1.next
+
+    def reverse_iterative(self):
+    
+        prev = None 
+        cur = self.head
+        while cur:
+            nxt = cur.next
+            cur.next = prev
+            prev = cur 
+            cur = nxt 
+        
+        self.head = prev
+        
+    def reverse_recursive(self):
+    
+        def _reverse_recursive(cur, prev):
+            if not cur:
+                return prev
+
+            nxt = cur.next
+            cur.next = prev
+            prev = cur 
+            cur = nxt 
+            
+            return _reverse_recursive(cur, prev)
+
+        self.head = _reverse_recursive(cur=self.head, prev=None)
+        
+        
+        
+if __name__ == "__main__":
     llist = LinkedList()
     llist.append("A")
     llist.append("B")
     llist.append("C")
     llist.append("D")
+    llist.append("E")
+    llist.append("F")
+    llist.append("G")
+    llist.append("T")
 
-    llist.prepend('H')
+    llist.prepend("H")
     llist.insert_after_node(llist.head.next.next.next, "S")
-    llist.delete_node('A')
+    llist.delete_node("A")
     llist.delete_node_at_pos(3)
     print(llist.len_iterative())
     print(llist.len_recursive(llist.head.next))
-    # print(llist.head)
     llist.print_list()
+    print("\n")
+    # print(llist.head)
+    print('Swap of H and C')
+    llist.swap_nodes('H', 'C')
+    print("\n")
+
+    print('Swap of B and E')
+    llist.swap_nodes('B', 'E')
+    print("\n")
+    
+    llist.swap_nodes('V', 'E')
+    llist.print_list()
+    print("\n")
+
+    # Iterative reversing 
+    print('Reverse Iterative')
+    llist.reverse_iterative()
+    llist.print_list()
+    print("\n")
+
+    print('Reversive Recursive')
+    llist.reverse_recursive()
+    llist.print_list()
+    print("\n")
