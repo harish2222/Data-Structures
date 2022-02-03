@@ -40,6 +40,7 @@ class LinkedList:
             print(cur_node.data, "->", end=" ")
 
             cur_node = cur_node.next
+        print(None)    
 
     def insert_after_node(self, prev_node, data):
 
