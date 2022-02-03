@@ -350,6 +350,30 @@ class LinkedList:
         else:
             return True
 
+    def sum_two_lists(self, l):
+        int1 = 0
+        int2 = 0
+        current = self.head
+        mul = 1
+        while(current != None):
+            y = current.data
+            int1 = int1 + y * mul
+            mul = mul * 10
+            current = current.next
+        mul = 1
+        current = l.head
+        while(current != None):
+            int2 = int2 + current.data * mul
+            mul = mul * 10
+            current = current.next
+        sum_ = str(int1 + int2)
+        
+        x = LinkedList()
+        temp = LinkedList()
+        for i in range(0, len(sum_)):
+            temp.append(sum_[i])
+        return temp.print_list()
+
 
 if __name__ == "__main__":
     llist = LinkedList()
