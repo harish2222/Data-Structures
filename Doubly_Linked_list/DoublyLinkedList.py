@@ -73,23 +73,23 @@ class DoublyLinkedList:
     def delete(self, key):
         cur = self.head
         while cur:
-            if cur.data == key and cur == self.head:
-                # Case 1:
-                if not cur.next:
-                    cur = None
-                    self.head = None
-                    return
+            # if cur.data == key and cur == self.head:
+            #     # Case 1:
+            #     if not cur.next:
+            #         cur = None
+            #         self.head = None
+            #         return
 
-                # Case 2:
-                else:
-                    nxt = cur.next
-                    cur.next = None
-                    nxt.prev = None
-                    cur = None
-                    self.head = nxt
-                    return
+            #     # Case 2:
+            #     else:
+            #         nxt = cur.next
+            #         cur.next = None
+            #         nxt.prev = None
+            #         cur = None
+            #         self.head = nxt
+            #         return
 
-            elif cur.data == key:
+            if cur.data == key:
                 # Case 3:
                 if cur.next:
                     nxt = cur.next
@@ -116,39 +116,40 @@ class DoublyLinkedList:
             if cur == node and cur == self.head:
                 # Case 1:
                 if not cur.next:
-                    cur = None
+                    cur = None 
                     self.head = None
                     return
 
                 # Case 2:
                 else:
                     nxt = cur.next
-                    cur.next = None
+                    cur.next = None 
                     nxt.prev = None
                     cur = None
                     self.head = nxt
-                    return
+                    return 
 
             elif cur == node:
                 # Case 3:
                 if cur.next:
-                    nxt = cur.next
+                    nxt = cur.next 
                     prev = cur.prev
                     prev.next = nxt
                     nxt.prev = prev
-                    cur.next = None
+                    cur.next = None 
                     cur.prev = None
                     cur = None
                     return
 
                 # Case 4:
                 else:
-                    prev = cur.prev
-                    prev.next = None
-                    cur.prev = None
-                    cur = None
-                    return
+                    prev = cur.prev 
+                    prev.next = None 
+                    cur.prev = None 
+                    cur = None 
+                    return 
             cur = cur.next
+
 
     def reverse(self):
         tmp = None
@@ -167,34 +168,18 @@ class DoublyLinkedList:
         l1 = []
         while tmp:
             l1.append(tmp.data)
-            self.delete_node(tmp.data)
+            self.delete()
+            self.print_list()
             tmp = tmp.next
-
-        l1 = set(l1)
-        # print(l1)
+        res = []
         for i in l1:
-            if self.head is None:
-                new_node = Node(i)
-                self.head = new_node
-            else:
-                new_node = Node(i)
-                cur = self.head
-                while cur.next:
-                    cur = cur.next
-                cur.next = new_node
-                new_node.prev = cur
+            if i not in res:
+                res.append(i)
 
-    def remove_duplicates1(self):
-        cur = self.head
-        l1 = []
+        for j in res:
+            self.append(j)
 
-        while cur:
-
-            if cur.data in l1:
-                self.delete(cur.data)
-            else:
-                l1.append(cur.data)
-            cur = cur.next
+    
 
 
 if __name__ == '__main__':
@@ -210,10 +195,15 @@ if __name__ == '__main__':
 
     llist.prepend(9)
     print(llist.head.data)
-    llist.print_list()
+    # llist.print_list()
 
-    llist.delete(3)
     llist.print_list()
+    llist.delete(3)
+    # llist.print_list()
 
     llist.reverse()
+    
+    
+    
+    
     llist.print_list()
