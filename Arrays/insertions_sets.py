@@ -17,7 +17,12 @@ def intersect_method(first_arr, second_arr):
 
 
 def union_method(first_arr, second_arr):
-    pass
+    for i in first_arr:
+        if i not in second_arr:
+            second_arr.append(i)
+    res = [i for n, i in enumerate(second_arr) if i not in second_arr[:n]]
+    return sorted(res)
+
 
 if __name__ == '__main__':
     A = [2, 3, 3, 5, 7, 11]
@@ -29,3 +34,5 @@ if __name__ == '__main__':
     d = intersect_method(B, A)
     print(c)
     print(d)
+    e = union_method(A, B)
+    print(e)
