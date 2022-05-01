@@ -1,3 +1,4 @@
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -202,7 +203,7 @@ if __name__ == '__main__':
     # llist.print_list()
 
     llist.reverse()
-    
+     
     
     
     
