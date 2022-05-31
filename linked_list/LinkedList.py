@@ -40,7 +40,7 @@ class LinkedList:
             print(cur_node.data, "->", end=" ")
 
             cur_node = cur_node.next
-        print(None)    
+        print(None)
 
     def insert_after_node(self, prev_node, data):
 
@@ -368,7 +368,7 @@ class LinkedList:
             mul = mul * 10
             current = current.next
         sum_ = str(int1 + int2)
-        
+
         x = LinkedList()
         temp = LinkedList()
         for i in range(0, len(sum_)):
